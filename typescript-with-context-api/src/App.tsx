@@ -3,12 +3,12 @@ import AuthContext from './context/AuthContext';
 
 
 function App() {
-  const {auth, setAuth} = useContext(AuthContext)!
+  const {auth, addAuth} = useContext(AuthContext)!
   return (
     <>
       <span>{auth?.email}</span>
       <span>{auth?.password}</span>
-      <button onClick={() => setAuth({email: 'Hello', password: 'abc'})}>Add Auth</button>
+      <button onClick={() => addAuth()}>Add Auth</button>
     </>
   );
 }
