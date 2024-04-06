@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useReducer } from 'react';
 import './App.css';
+import CounterReducer from './reducers/counterReducer';
+import { CounterStateType, CounterActionType, ACTION } from './reducers/counterReducer';
 
 function App() {
+
+  // InitialState
+  const InitialState = {
+    count: 0
+  }
+
+  // State
+  const [count, dispatch]: [CounterStateType, React.Dispatch<CounterActionType>] = useReducer(CounterReducer, InitialState)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span>{count.count}</span>
+      <button onClick={() => dispatch({type: ACTION.increment})}>Increment</button>
+      <button onClick={() => dispatch({type: ACTION.decrement})}>Decrement</button>
     </div>
   );
 }
